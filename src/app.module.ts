@@ -1,16 +1,24 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TagModule } from './tag/tag.module';
 import config from './ormconfig';
 import { UserModule } from '@appuser/user.module';
+import { AuthMiddleware } from '@appuser/middlewares/auth.middlware';
 @Module({
   imports: [TypeOrmModule.forRoot(config), TagModule, UserModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consume: MiddlewareConsumer) {
+    consume.apply(AuthMiddleware).forRoutes({
+      path: '*',
+      method: RequestMethod.ALL,
+    });
+  }
+}
 
 // @Module({
 //   imports: [
