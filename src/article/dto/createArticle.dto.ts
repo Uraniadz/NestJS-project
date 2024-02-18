@@ -1,13 +1,13 @@
-import { IsEmpty } from 'class-validator';
+import { IsEmpty, IsNotEmpty } from 'class-validator';
 
 export class CreateArticleDto {
-  @IsEmpty()
+  @IsNotEmpty()
   readonly title: string;
 
-  @IsEmpty()
+  @IsNotEmpty()
   readonly description: string;
 
-  @IsEmpty()
+  @IsNotEmpty()
   readonly body: string;
 
   readonly taglist?: string[];

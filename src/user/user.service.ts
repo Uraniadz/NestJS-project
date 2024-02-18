@@ -86,9 +86,14 @@ export class UserService {
   }
 
   buildUserResponse(user: UserEntity): UserResponseInterface {
+    const { username } = user;
     return {
       user: {
-        ...user,
+        username: user.username,
+        email: user.email,
+        id: user.id,
+        bio: '',
+        img: '',
         token: this.generateJwt(user),
       },
     };
