@@ -89,13 +89,17 @@ export class UserService {
     const { username } = user;
     return {
       user: {
-        username: user.username,
-        email: user.email,
-        id: user.id,
-        bio: '',
-        img: '',
+        ...user,
         token: this.generateJwt(user),
       },
+      // user: {
+      //   username: user.username,
+      //   email: user.email,
+      //   id: user.id,
+      //   bio: '',
+      //   img: '',
+      //   token: this.generateJwt(user),
+      // },
     };
   }
 }

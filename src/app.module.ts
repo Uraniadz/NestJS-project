@@ -12,12 +12,14 @@ import config from './ormconfig';
 import { UserModule } from '@appuser/user.module';
 import { AuthMiddleware } from '@appuser/middlewares/auth.middlware';
 import { ArticleModule } from '@apparticle/article.module';
+import { ProfileModule } from '@appprofile/profile.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(config),
     TagModule,
     UserModule,
     ArticleModule,
+    ProfileModule,
   ],
   controllers: [AppController],
   providers: [AppService],
